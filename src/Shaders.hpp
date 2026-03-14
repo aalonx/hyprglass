@@ -260,6 +260,11 @@ void main() {
     float glassA = glassOpacity * cornerAlpha;
 
     if (hasMask) {
+        // Aggressive Liquid Mask: Only pixels with alpha > 0.11 get glass.
+        // This force-isolates the glass to the visual islands and avoids container artifacts.
+        float mask = surfacePixel.a > 0.14 ? 1.0 : 0.0;
+        glassA *= mask;
+
         // Layers only: composite the rendered surface over the glass effect
         // in a single pass. surfacePixel is premultiplied alpha from Hyprland's
         // surface rendering, so we unpremultiply before the 'over' blend.

@@ -181,8 +181,8 @@ void CGlassLayerSurface::compositeAndRestore(PHLMONITOR monitor, float alpha) {
     const std::string preset   = resolvePresetName();
     const SResolveContext ctx  = {preset, isDark, g_pGlobalState->config, g_pGlobalState->customPresets};
 
-    float cornerRadius  = 0.0f;
-    float roundingPower = 2.0f;
+    float cornerRadius  = 32.0f;
+    float roundingPower = 4.5f;
 
     // Use the temp FBO's rendered alpha as a mask: glass only where the surface
     // has visible content (alpha > 0). The temp FBO is in monitor coordinates,
